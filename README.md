@@ -2,11 +2,6 @@
 
 **Faster | Better | Type-Safe**
 
-[![Passing Package](https://github.com/xscynio/codeforcespy/actions/workflows/python-publish.yml/badge.svg)](https://github.com/xscynio/codeforcespy/actions/workflows/python-publish.yml)  
-[![Type Checking](https://img.shields.io/badge/python-Strict-checking?style=plastic&logo=python&label=Type-Checking&labelColor=yellow)](https://www.python.org/)
-
-![codeforcespy Logo](https://github.com/xscynio/codeforcespy/assets/118044992/cdb54788-3fbc-48db-b936-7f0e883f9709)
-
 ## Overview
 
 **codeforcespy** is a high-performance, type-safe Python library that simplifies interacting with the Codeforces API. It provides both synchronous and asynchronous client handlers to suit different application needs, ensuring that your code remains efficient, reliable, and fully type-checked.
