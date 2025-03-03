@@ -65,11 +65,11 @@ Below is a basic example demonstrating how to retrieve user information asynchro
 
 ```python
 import asyncio
-import pycodeforces
+import codeforcespy
 
 async def main():
     # Initialize the asynchronous client
-    api = pycodeforces.AsyncMethod()
+    api = codeforcespy.AsyncMethod()
     
     # Retrieve user information for multiple handles separated by semicolons
     users = await api.get_user(handles="DmitriyH;Fefer_Ivan")
@@ -89,11 +89,11 @@ asyncio.run(main())
 The synchronous client offers similar functionality:
 
 ```python
-import pycodeforces
+import codeforcespy
 
 def main():
     # Initialize the synchronous client
-    api = pycodeforces.SyncMethod()
+    api = codeforcespy.SyncMethod()
     
     # Retrieve user information for multiple handles separated by semicolons
     users = api.get_user(handles="DmitriyH;Fefer_Ivan")
