@@ -44,9 +44,9 @@ UserStatusResponse
 """
 
 import msgspec
-import typing as t
-import codeforcespy.abc.objects as cf_objects
+
 import codeforcespy.abc.cobjects as cf_cobjects
+import codeforcespy.abc.objects as cf_objects
 
 
 class InteractionResponse(msgspec.Struct):
@@ -57,12 +57,12 @@ class InteractionResponse(msgspec.Struct):
     ----------
     status : str
         The status of the API interaction.
-    comment : Optional[str]
+    comment : str | None
         An optional comment associated with the response.
     """
 
     status: str
-    comment: t.Optional[str] = None
+    comment: str | None = None
 
 
 class UserInteractionResponse(InteractionResponse):
@@ -71,11 +71,11 @@ class UserInteractionResponse(InteractionResponse):
 
     Attributes
     ----------
-    result : Optional[Union[List[cf_objects.User], cf_objects.User]]
+    result : list[cf_objects.User] | cf_objects.User | None
         A single user or a list of users returned by the API.
     """
 
-    result: t.Optional[t.Union[t.List[cf_objects.User], cf_objects.User]] = None
+    result: list[cf_objects.User] | cf_objects.User | None = None
 
 
 class BlogEntryCommentResponse(InteractionResponse):
@@ -84,11 +84,11 @@ class BlogEntryCommentResponse(InteractionResponse):
 
     Attributes
     ----------
-    result : Optional[Union[List[cf_objects.Comment], cf_objects.Comment]]
+    result : list[cf_objects.Comment] | cf_objects.Comment | None
         A single comment or a list of comments returned by the API.
     """
 
-    result: t.Optional[t.Union[t.List[cf_objects.Comment], cf_objects.Comment]] = None
+    result: list[cf_objects.Comment] | cf_objects.Comment | None = None
 
 
 class BlogEntryViewResponse(InteractionResponse):
@@ -97,13 +97,11 @@ class BlogEntryViewResponse(InteractionResponse):
 
     Attributes
     ----------
-    result : Optional[Union[List[cf_objects.BlogEntry], cf_objects.BlogEntry]]
+    result : list[cf_objects.BlogEntry] | cf_objects.BlogEntry | None
         A single blog entry or a list of blog entries returned by the API.
     """
 
-    result: t.Optional[t.Union[t.List[cf_objects.BlogEntry], cf_objects.BlogEntry]] = (
-        None
-    )
+    result: list[cf_objects.BlogEntry] | cf_objects.BlogEntry | None = None
 
 
 class ContestHacksResponse(InteractionResponse):
@@ -112,11 +110,11 @@ class ContestHacksResponse(InteractionResponse):
 
     Attributes
     ----------
-    result : Optional[Union[List[cf_objects.Hack], cf_objects.Hack]]
+    result : list[cf_objects.Hack] | cf_objects.Hack | None
         A single hack or a list of hacks returned by the API.
     """
 
-    result: t.Optional[t.Union[t.List[cf_objects.Hack], cf_objects.Hack]] = None
+    result: list[cf_objects.Hack] | cf_objects.Hack | None = None
 
 
 class ContestListResponse(InteractionResponse):
@@ -125,11 +123,11 @@ class ContestListResponse(InteractionResponse):
 
     Attributes
     ----------
-    result : Optional[Union[List[cf_objects.Contest], cf_objects.Contest]]
+    result : list[cf_objects.Contest] | cf_objects.Contest | None
         A single contest or a list of contests returned by the API.
     """
 
-    result: t.Optional[t.Union[t.List[cf_objects.Contest], cf_objects.Contest]] = None
+    result: list[cf_objects.Contest] | cf_objects.Contest | None = None
 
 
 class ContestRatingChangeResponse(InteractionResponse):
@@ -138,13 +136,11 @@ class ContestRatingChangeResponse(InteractionResponse):
 
     Attributes
     ----------
-    result : Optional[Union[List[cf_objects.RatingChange], cf_objects.RatingChange]]
+    result : list[cf_objects.RatingChange] | cf_objects.RatingChange | None
         A single rating change or a list of rating changes returned by the API.
     """
 
-    result: t.Optional[
-        t.Union[t.List[cf_objects.RatingChange], cf_objects.RatingChange]
-    ] = None
+    result: list[cf_objects.RatingChange] | cf_objects.RatingChange | None = None
 
 
 class ContestStandingResponse(InteractionResponse):
@@ -153,13 +149,11 @@ class ContestStandingResponse(InteractionResponse):
 
     Attributes
     ----------
-    result : Optional[Union[List[cf_cobjects.Standings], cf_cobjects.Standings]]
+    result : list[cf_cobjects.Standings] | cf_cobjects.Standings | None
         A single standings object or a list of standings objects returned by the API.
     """
 
-    result: t.Optional[
-        t.Union[t.List[cf_cobjects.Standings], cf_cobjects.Standings]
-    ] = None
+    result: list[cf_cobjects.Standings] | cf_cobjects.Standings | None = None
 
 
 class ContestStatusResponse(InteractionResponse):
@@ -168,13 +162,11 @@ class ContestStatusResponse(InteractionResponse):
 
     Attributes
     ----------
-    result : Optional[Union[List[cf_objects.Submission], cf_objects.Submission]]
+    result : list[cf_objects.Submission] | cf_objects.Submission | None
         A single submission or a list of submissions returned by the API.
     """
 
-    result: t.Optional[
-        t.Union[t.List[cf_objects.Submission], cf_objects.Submission]
-    ] = None
+    result: list[cf_objects.Submission] | cf_objects.Submission | None = None
 
 
 class ProblemSetProblemsResponse(InteractionResponse):
@@ -183,13 +175,13 @@ class ProblemSetProblemsResponse(InteractionResponse):
 
     Attributes
     ----------
-    result : Optional[Union[List[cf_cobjects.ProblemSetProblems], cf_cobjects.ProblemSetProblems]]
+    result : list[cf_cobjects.ProblemSetProblems] | cf_cobjects.ProblemSetProblems | None
         A single problem set problems object or a list of such objects returned by the API.
     """
 
-    result: t.Optional[
-        t.Union[t.List[cf_cobjects.ProblemSetProblems], cf_cobjects.ProblemSetProblems]
-    ] = None
+    result: (
+        list[cf_cobjects.ProblemSetProblems] | cf_cobjects.ProblemSetProblems | None
+    ) = None
 
 
 class ProblemSetRecentStatusResponse(InteractionResponse):
@@ -198,13 +190,11 @@ class ProblemSetRecentStatusResponse(InteractionResponse):
 
     Attributes
     ----------
-    result : Optional[Union[List[cf_objects.Submission], cf_objects.Submission]]
+    result : list[cf_objects.Submission] | cf_objects.Submission | None
         A single submission or a list of submissions returned by the API.
     """
 
-    result: t.Optional[
-        t.Union[t.List[cf_objects.Submission], cf_objects.Submission]
-    ] = None
+    result: list[cf_objects.Submission] | cf_objects.Submission | None = None
 
 
 class RecentActionsResponse(InteractionResponse):
@@ -213,13 +203,11 @@ class RecentActionsResponse(InteractionResponse):
 
     Attributes
     ----------
-    result : Optional[Union[List[cf_objects.RecentAction], cf_objects.RecentAction]]
+    result : list[cf_objects.RecentAction] | cf_objects.RecentAction | None
         A single recent action or a list of recent actions returned by the API.
     """
 
-    result: t.Optional[
-        t.Union[t.List[cf_objects.RecentAction], cf_objects.RecentAction]
-    ] = None
+    result: list[cf_objects.RecentAction] | cf_objects.RecentAction | None = None
 
 
 class UserBlogEntryResponse(InteractionResponse):
@@ -228,13 +216,11 @@ class UserBlogEntryResponse(InteractionResponse):
 
     Attributes
     ----------
-    result : Optional[Union[List[cf_objects.BlogEntry], cf_objects.BlogEntry]]
+    result : list[cf_objects.BlogEntry] | cf_objects.BlogEntry | None
         A single blog entry or a list of blog entries returned by the API.
     """
 
-    result: t.Optional[t.Union[t.List[cf_objects.BlogEntry], cf_objects.BlogEntry]] = (
-        None
-    )
+    result: list[cf_objects.BlogEntry] | cf_objects.BlogEntry | None = None
 
 
 class UserFriendResponse(InteractionResponse):
@@ -243,11 +229,11 @@ class UserFriendResponse(InteractionResponse):
 
     Attributes
     ----------
-    result : Optional[Union[List[str], str]]
+    result : list[str] | str | None
         A single friend (user handle) or a list of user handles returned by the API.
     """
 
-    result: t.Optional[t.Union[t.List[str], str]] = None
+    result: list[str] | str | None = None
 
 
 class UserRatedListResponse(InteractionResponse):
@@ -256,11 +242,11 @@ class UserRatedListResponse(InteractionResponse):
 
     Attributes
     ----------
-    result : Optional[Union[List[cf_objects.User], cf_objects.User]]
+    result : list[cf_objects.User] | cf_objects.User | None
         A single user or a list of users in the rated list returned by the API.
     """
 
-    result: t.Optional[t.Union[t.List[cf_objects.User], cf_objects.User]] = None
+    result: list[cf_objects.User] | cf_objects.User | None = None
 
 
 class UserRatingResponse(InteractionResponse):
@@ -269,13 +255,11 @@ class UserRatingResponse(InteractionResponse):
 
     Attributes
     ----------
-    result : Optional[Union[List[cf_objects.RatingChange], cf_objects.RatingChange]]
+    result : list[cf_objects.RatingChange] | cf_objects.RatingChange | None
         A single rating change or a list of rating changes returned by the API.
     """
 
-    result: t.Optional[
-        t.Union[t.List[cf_objects.RatingChange], cf_objects.RatingChange]
-    ] = None
+    result: list[cf_objects.RatingChange] | cf_objects.RatingChange | None = None
 
 
 class UserStatusResponse(InteractionResponse):
@@ -284,10 +268,8 @@ class UserStatusResponse(InteractionResponse):
 
     Attributes
     ----------
-    result : Optional[Union[List[cf_objects.Submission], cf_objects.Submission]]
+    result : list[cf_objects.Submission] | cf_objects.Submission | None
         A single submission or a list of submissions returned by the API.
     """
 
-    result: t.Optional[
-        t.Union[t.List[cf_objects.Submission], cf_objects.Submission]
-    ] = None
+    result: list[cf_objects.Submission] | cf_objects.Submission | None = None

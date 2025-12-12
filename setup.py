@@ -1,12 +1,13 @@
-from setuptools import setup, find_packages
+from setuptools import find_packages
+from setuptools import setup
 
 # Read the long description from README.md
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
-setup(
+_ = setup(
     name="codeforcespy",
-    version="1.0",
+    version="1.1.0",
     author="Xsyncio",
     description=(
         "A high-performance and type-safe Python library for seamless interaction "
@@ -16,32 +17,36 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/xscynio/codeforcespy",
-    packages=find_packages(include=["pycodeforces", "pycodeforces.*"]),
+    packages=find_packages(include=["codeforcespy", "codeforcespy.*"]),
     include_package_data=True,
     install_requires=[
-        "httpx",
-        "msgspec",
+        "httpx>=0.23.0",
+        "msgspec>=0.18.0",
     ],
     extras_require={
         "dev": [
             "ruff",
             "pytest",
             "mypy",
+            "basedpyright",
+            "respx",
+            "build",
         ],
     },
-    python_requires=">=3.7",
+    python_requires=">=3.9",
     classifiers=[
-        "Development Status :: 4 - Beta",
+        "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
         "Topic :: Software Development :: Libraries",
-        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+        "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.7",
-        "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
+        "Programming Language :: Python :: 3.13",
         "Operating System :: OS Independent",
+        "Typing :: Typed",
     ],
     keywords=[
         "python",
@@ -51,6 +56,7 @@ setup(
         "async",
         "sync",
         "type-safe",
+        "competitive-programming",
     ],
     project_urls={
         "Bug Tracker": "https://github.com/xscynio/codeforcespy/issues",

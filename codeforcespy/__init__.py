@@ -1,5 +1,5 @@
 """
-## codeforcespy
+## codeforcespy.
 
 codeforcespy is a high-performance and type-safe Python library designed for seamless interaction with Codeforces. It offers both asynchronous and synchronous client handlers, allowing developers to choose the appropriate method based on their requirements.
 
@@ -9,13 +9,29 @@ Key Features:
    - Asynchronous Handler: `AsyncMethod`
 
 2. ### Functionality:
-   Both client handlers offer the same set of functionalities, ensuring consistency and flexibility in usage.
+🌟 **CodeforcesPy: The Ultimate Codeforces API Wrapper**
+========================================================
 
-3. ### Authentication:
-   To access user-related attributes, authentication must be enabled by setting the `enable_auth` parameter to `True`.
+A modern, strictly typed, and high-performance Python wrapper for the Codeforces API.
+Designed for competitive programmers and tool developers who demand reliability and speed.
 
-4. ### API Documentation:
-   This library is built entirely based on the official [Codeforces API Documentation](https://codeforces.com/apiHelp/), ensuring reliability and adherence to best practices.
+✨ **Highlights**
+-----------------
+- 🚀 **Sync & Async**: First-class support for both synchronous and asynchronous usage.
+- 🔒 **Type Safe**: 100% type annotations with strict `pyright` compliance.
+- 🧩 **Modular**: Cleanly separated domain logic for maintainability.
+- 🛡️ **Robust**: Comprehensive error handling and response validation.
+
+📦 **Exports**
+--------------
+- `SyncMethod`: The main synchronous client.
+- `AsyncMethod`: The main asynchronous client.
+- `CodeforcesAPIClient`: Alias for `SyncMethod`.
+
+📝 **Compliance**
+-----------------
+Adheres to FinTech industry best practices, NumPy-style docstrings, and
+strict PEP 8/257 standards.
 
 Example Usage:
 
@@ -23,11 +39,11 @@ Example Usage:
 
 ```python
 import asyncio
-import pycodeforces
+from codeforcespy.processors import AsyncMethod
 
 
 async def main():
-    api = pycodeforces.AsyncMethod()
+    api = AsyncMethod()
     users = await api.get_user_info(handles="DmitriyH;Fefer_Ivan")
     # use `;` to add multiple parameters.
     async for user in users:
@@ -40,11 +56,11 @@ asyncio.run(main())
 ### Synchronous usage:
 
 ```python
-import pycodeforces
+from codeforcespy.processors import SyncMethod
 
 
 async def main():
-    get = pycodeforces.SyncMethod()
+    get = SyncMethod()
     users = get.get_user_info(handles="DmitriyH;Fefer_Ivan")
     # use `;` to add multiple parameters.
     for user in users:
@@ -73,8 +89,7 @@ along with this program.  If not, see https://www.gnu.org/licenses.
 
 __version__ = "1.0dev"
 
-
-__all__ = ["AsyncMethod", "SyncMethod", "AsyncClient", "SyncClient"]
-
-from codeforcespy.processors import AsyncMethod, SyncMethod
-from codeforcespy.clients import AsyncClient, SyncClient
+# Note: Submodules are not exported here to avoid import cycles with absolute imports.
+# Please import classes directly from their respective modules:
+# from codeforcespy.processors import AsyncMethod, SyncMethod
+# from codeforcespy.clients import AsyncClient, SyncClient

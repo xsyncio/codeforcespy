@@ -1,13 +1,23 @@
 """
-Module for generating Codeforces API endpoints.
+🔗 **API Endpoints Definitions**.
+================================
 
-This module defines the CodeForcesAPI class, which provides methods for
-constructing URL endpoints for various Codeforces API functionalities.
-The implementation adheres to industry best practices, including strict
-type safety, modularity, and comprehensive NumPy-style docstrings.
+Defines the structure and generation logic for Codeforces API endpoints.
+
+✨ **Capabilities**
+-------------------
+- 🛤️ **Route Generation**: Dynamically constructs API URLs.
+- 🔧 **Parameter Handling**: Manages query parameters for endpoints.
+
+📦 **Classes**
+--------------
+- `CodeForcesAPI`: Main endpoint generator.
+
+📝 **Compliance**
+-----------------
+Adheres to FinTech industry best practices, NumPy-style docstrings, and
+strict PEP 8/257 standards.
 """
-
-import typing as t
 
 
 class CodeForcesAPI:
@@ -27,9 +37,7 @@ class CodeForcesAPI:
     """
 
     def __init__(self) -> None:
-        """
-        Initialize the CodeForcesAPI instance with the base API URL.
-        """
+        """Initialize the CodeForcesAPI instance with the base API URL."""
         self.base_url: str = "https://codeforces.com/api"
 
     def blog_entry_comments(self, blog_entry_id: int) -> str:
@@ -76,9 +84,7 @@ class CodeForcesAPI:
         """
         return f"{self.base_url}/blogEntry.view?blogEntryId={blog_entry_id}"
 
-    def contest_hacks(
-        self, contest_id: int, as_manager: t.Optional[bool] = False
-    ) -> str:
+    def contest_hacks(self, contest_id: int, as_manager: bool | None = False) -> str:
         """
         Generate URL endpoint to retrieve hacks for a specific contest.
 
@@ -86,7 +92,7 @@ class CodeForcesAPI:
         ----------
         contest_id : int
             The ID of the contest.
-        as_manager : Optional[bool], default False
+        as_manager : bool | None, default False
             Flag indicating if the request is made by a contest manager.
 
         Returns
@@ -102,13 +108,13 @@ class CodeForcesAPI:
         """
         return f"{self.base_url}/contest.hacks?contestId={contest_id}&asManager={as_manager}"
 
-    def contest_list(self, gym: t.Optional[bool] = False) -> str:
+    def contest_list(self, gym: bool | None = False) -> str:
         """
         Generate URL endpoint to retrieve information about all available contests.
 
         Parameters
         ----------
-        gym : Optional[bool], default False
+        gym : bool | None, default False
             Flag indicating if gym contests should be returned.
 
         Returns
@@ -149,10 +155,10 @@ class CodeForcesAPI:
     def contest_standings(
         self,
         contest_id: int,
-        as_manager: t.Optional[bool] = False,
+        as_manager: bool | None = False,
         from_index: int = 1,
         count: int = 5,
-        show_unofficial: t.Optional[bool] = True,
+        show_unofficial: bool | None = True,
     ) -> str:
         """
         Generate URL endpoint to retrieve contest standings and details.
@@ -161,13 +167,13 @@ class CodeForcesAPI:
         ----------
         contest_id : int
             The ID of the contest.
-        as_manager : Optional[bool], default False
+        as_manager : bool | None, default False
             Flag indicating if the request is made by a contest manager.
         from_index : int, default 1
             1-based index of the standings row to start the ranklist.
         count : int, default 5
             Number of standing rows to return.
-        show_unofficial : Optional[bool], default True
+        show_unofficial : bool | None, default True
             Flag indicating if unofficial contestants should be shown.
 
         Returns
@@ -189,8 +195,8 @@ class CodeForcesAPI:
     def contest_status(
         self,
         contest_id: int,
-        as_manager: t.Optional[bool] = False,
-        handle: t.Optional[str] = None,
+        as_manager: bool | None = False,
+        handle: str | None = None,
         from_index: int = 1,
         count: int = 10,
     ) -> str:
@@ -201,9 +207,9 @@ class CodeForcesAPI:
         ----------
         contest_id : int
             The ID of the contest.
-        as_manager : Optional[bool], default False
+        as_manager : bool | None, default False
             Flag indicating if the request is made by a contest manager.
-        handle : Optional[str], default None
+        handle : str | None, default None
             Codeforces user handle.
         from_index : int, default 1
             1-based index of the first submission to return.
@@ -231,17 +237,17 @@ class CodeForcesAPI:
 
     def problemset_problems(
         self,
-        tags: t.Optional[str] = None,
-        problemset_name: t.Optional[str] = None,
+        tags: str | None = None,
+        problemset_name: str | None = None,
     ) -> str:
         """
         Generate URL endpoint to retrieve problems from the problemset.
 
         Parameters
         ----------
-        tags : Optional[str], default None
+        tags : str | None, default None
             Semicolon-separated list of tags.
-        problemset_name : Optional[str], default None
+        problemset_name : str | None, default None
             Custom problemset's short name.
 
         Returns
@@ -267,7 +273,7 @@ class CodeForcesAPI:
     def problemset_recent_status(
         self,
         count: int,
-        problemset_name: t.Optional[str] = None,
+        problemset_name: str | None = None,
     ) -> str:
         """
         Generate URL endpoint to retrieve recent submissions from the problemset.
@@ -276,7 +282,7 @@ class CodeForcesAPI:
         ----------
         count : int
             Number of submissions to return.
-        problemset_name : Optional[str], default None
+        problemset_name : str | None, default None
             Custom problemset's short name.
 
         Returns
@@ -339,13 +345,13 @@ class CodeForcesAPI:
         """
         return f"{self.base_url}/user.blogEntries?handle={handle}"
 
-    def user_friends(self, only_online: t.Optional[bool] = False) -> str:
+    def user_friends(self, only_online: bool | None = False) -> str:
         """
         Generate URL endpoint to retrieve the authorized user's friends list.
 
         Parameters
         ----------
-        only_online : Optional[bool], default False
+        only_online : bool | None, default False
             Flag indicating if only online friends should be returned.
 
         Returns
@@ -364,7 +370,7 @@ class CodeForcesAPI:
     def user_info(
         self,
         handles: str,
-        check_historic_handles: t.Optional[bool] = True,
+        check_historic_handles: bool | None = True,
     ) -> str:
         """
         Generate URL endpoint to retrieve information about one or several users.
@@ -373,7 +379,7 @@ class CodeForcesAPI:
         ----------
         handles : str
             Semicolon-separated list of user handles.
-        check_historic_handles : Optional[bool], default True
+        check_historic_handles : bool | None, default True
             Flag indicating if historical handles should be checked.
 
         Returns
@@ -391,20 +397,20 @@ class CodeForcesAPI:
 
     def user_rated_list(
         self,
-        active_only: t.Optional[bool] = True,
-        include_retired: t.Optional[bool] = False,
-        contest_id: t.Optional[int] = None,
+        active_only: bool | None = True,
+        include_retired: bool | None = False,
+        contest_id: int | None = None,
     ) -> str:
         """
         Generate URL endpoint to retrieve the list of rated users.
 
         Parameters
         ----------
-        active_only : Optional[bool], default True
+        active_only : bool | None, default True
             Flag indicating if only active users should be returned.
-        include_retired : Optional[bool], default False
+        include_retired : bool | None, default False
             Flag indicating if retired users should be included.
-        contest_id : Optional[int], default None
+        contest_id : int | None, default None
             Contest ID to filter the rated users.
 
         Returns

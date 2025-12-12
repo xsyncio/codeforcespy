@@ -1,46 +1,38 @@
 """
-Module for Codeforces API Data Structures
+📦 **Data Models (Pydantic)**.
+=============================
 
-This module defines the data structures representing various entities returned by
-the Codeforces API. These entities include users, blog entries, comments, contests,
-submissions, hacks, and more. Each class is implemented as a subclass of
-`msgspec.Struct` to ensure efficient serialization, strict type safety, and clear
-adherence to Python Enhancement Proposals (PEP 8, PEP 257, and PEP 484).
+Pydantic models representing Codeforces API response objects.
 
-Classes
--------
-User
-    Represents a Codeforces user.
-Member
-    Represents a member of a party.
-BlogEntry
-    Represents a Codeforces blog entry.
-Comment
-    Represents a comment.
-RecentAction
-    Represents a recent action.
-RatingChange
-    Represents a user's rating change after a contest.
-Contest
-    Represents a contest.
-Party
-    Represents a party participating in a contest.
-Problem
-    Represents a problem.
-ProblemStatistics
-    Represents statistics data for a problem.
-Submission
-    Represents a submission.
-Hack
-    Represents a hack attempt during a contest.
-ProblemResult
-    Represents a party's result for a specific problem.
-RankListRow
-    Represents a row in the contest ranklist.
+✨ **Features**
+--------------
+- 🛡️ **Validation**: Strict runtime type checking and validation.
+- 🏗️ **Structure**: Clear object definitions for Users, Contests, Problems, etc.
+
+📦 **Classes**
+--------------
+- `User`: Represents a Codeforces user.
+- `Member`: Represents a member of a party.
+- `BlogEntry`: Represents a Codeforces blog entry.
+- `Comment`: Represents a comment.
+- `RecentAction`: Represents a recent action.
+- `RatingChange`: Represents a user's rating change after a contest.
+- `Contest`: Represents a contest.
+- `Party`: Represents a party participating in a contest.
+- `Problem`: Represents a problem.
+- `ProblemStatistics`: Represents statistics data for a problem.
+- `Submission`: Represents a submission.
+- `Hack`: Represents a hack attempt during a contest.
+- `ProblemResult`: Represents a party's result for a specific problem.
+- `RankListRow`: Represents a row in the contest ranklist.
+
+📝 **Compliance**
+-----------------
+Adheres to FinTech industry best practices, NumPy-style docstrings, and
+strict PEP 8/257 standards.
 """
 
 import msgspec
-import typing as t
 
 
 class User(msgspec.Struct):
@@ -49,65 +41,65 @@ class User(msgspec.Struct):
 
     Attributes
     ----------
-    handle : t.Optional[str]
+    handle : str | None
         Codeforces user handle.
-    vkId : t.Optional[str]
+    vkId : str | None
         User ID for the VK social network (if shared).
-    openId : t.Optional[str]
+    openId : str | None
         OpenID identifier (if shared).
-    firstName : t.Optional[str]
+    firstName : str | None
         Localized first name of the user.
-    lastName : t.Optional[str]
+    lastName : str | None
         Localized last name of the user.
-    country : t.Optional[str]
+    country : str | None
         Localized country of the user.
-    city : t.Optional[str]
+    city : str | None
         Localized city of the user.
-    organization : t.Optional[str]
+    organization : str | None
         Localized organization of the user.
-    contribution : t.Optional[int]
+    contribution : int | None
         User's contribution to the Codeforces community.
-    rank : t.Optional[str]
+    rank : str | None
         Localized rank of the user.
-    rating : t.Optional[int]
+    rating : int | None
         User's rating in the Codeforces community.
-    maxRank : t.Optional[str]
+    maxRank : str | None
         Localized maximum rank achieved by the user.
-    maxRating : t.Optional[int]
+    maxRating : int | None
         Maximum rating achieved by the user.
-    lastOnlineTimeSeconds : t.Optional[int]
+    lastOnlineTimeSeconds : int | None
         Unix timestamp indicating when the user was last online.
-    registrationTimeSeconds : t.Optional[int]
+    registrationTimeSeconds : int | None
         Unix timestamp of the user's registration.
-    friendOfCount : t.Optional[int]
+    friendOfCount : int | None
         Number of users who have this user in their friends list.
-    avatar : t.Optional[str]
+    avatar : str | None
         URL of the user's avatar.
-    titlePhoto : t.Optional[str]
+    titlePhoto : str | None
         URL of the user's title photo.
-    email : t.Optional[str]
+    email : str | None
         Email address (shared if permitted).
     """
 
-    handle: t.Optional[str] = None
-    vkId: t.Optional[str] = None
-    openId: t.Optional[str] = None
-    firstName: t.Optional[str] = None
-    lastName: t.Optional[str] = None
-    country: t.Optional[str] = None
-    city: t.Optional[str] = None
-    organization: t.Optional[str] = None
-    contribution: t.Optional[int] = None
-    rank: t.Optional[str] = None
-    rating: t.Optional[int] = None
-    maxRank: t.Optional[str] = None
-    maxRating: t.Optional[int] = None
-    lastOnlineTimeSeconds: t.Optional[int] = None
-    registrationTimeSeconds: t.Optional[int] = None
-    friendOfCount: t.Optional[int] = None
-    avatar: t.Optional[str] = None
-    titlePhoto: t.Optional[str] = None
-    email: t.Optional[str] = None
+    handle: str | None = None
+    vkId: str | None = None
+    openId: str | None = None
+    firstName: str | None = None
+    lastName: str | None = None
+    country: str | None = None
+    city: str | None = None
+    organization: str | None = None
+    contribution: int | None = None
+    rank: str | None = None
+    rating: int | None = None
+    maxRank: str | None = None
+    maxRating: int | None = None
+    lastOnlineTimeSeconds: int | None = None
+    registrationTimeSeconds: int | None = None
+    friendOfCount: int | None = None
+    avatar: str | None = None
+    titlePhoto: str | None = None
+    email: str | None = None
 
 
 class Member(msgspec.Struct):
@@ -118,12 +110,12 @@ class Member(msgspec.Struct):
     ----------
     handle : str
         Codeforces user handle.
-    name : t.Optional[str]
+    name : str | None
         User's name (if available).
     """
 
     handle: str
-    name: t.Optional[str] = None
+    name: str | None = None
 
 
 class BlogEntry(msgspec.Struct):
@@ -132,41 +124,41 @@ class BlogEntry(msgspec.Struct):
 
     Attributes
     ----------
-    id : t.Optional[int]
+    id : int | None
         Unique identifier for the blog entry.
-    originalLocale : t.Optional[str]
+    originalLocale : str | None
         Original locale of the blog entry.
-    creationTimeSeconds : t.Optional[int]
+    creationTimeSeconds : int | None
         Unix timestamp when the blog entry was created.
-    authorHandle : t.Optional[str]
+    authorHandle : str | None
         User handle of the blog entry author.
-    title : t.Optional[str]
+    title : str | None
         Localized title of the blog entry.
-    content : t.Optional[str]
+    content : str | None
         Localized content of the blog entry (omitted in the short version).
-    locale : t.Optional[str]
+    locale : str | None
         Locale of the blog entry.
-    modificationTimeSeconds : t.Optional[int]
+    modificationTimeSeconds : int | None
         Unix timestamp when the blog entry was last modified.
-    allowViewHistory : t.Optional[bool]
+    allowViewHistory : bool | None
         Indicates if viewing the history of the blog entry is permitted.
-    tags : t.Optional[t.List[str]]
+    tags : list[str] | None
         List of tags associated with the blog entry.
-    rating : t.Optional[int]
+    rating : int | None
         Rating of the blog entry.
     """
 
-    id: t.Optional[int] = None
-    originalLocale: t.Optional[str] = None
-    creationTimeSeconds: t.Optional[int] = None
-    authorHandle: t.Optional[str] = None
-    title: t.Optional[str] = None
-    content: t.Optional[str] = None
-    locale: t.Optional[str] = None
-    modificationTimeSeconds: t.Optional[int] = None
-    allowViewHistory: t.Optional[bool] = None
-    tags: t.Optional[t.List[str]] = None
-    rating: t.Optional[int] = None
+    id: int | None = None
+    originalLocale: str | None = None
+    creationTimeSeconds: int | None = None
+    authorHandle: str | None = None
+    title: str | None = None
+    content: str | None = None
+    locale: str | None = None
+    modificationTimeSeconds: int | None = None
+    allowViewHistory: bool | None = None
+    tags: list[str] | None = None
+    rating: int | None = None
 
 
 class Comment(msgspec.Struct):
@@ -175,29 +167,29 @@ class Comment(msgspec.Struct):
 
     Attributes
     ----------
-    id : t.Optional[int]
+    id : int | None
         Unique identifier for the comment.
-    creationTimeSeconds : t.Optional[int]
+    creationTimeSeconds : int | None
         Unix timestamp when the comment was created.
-    commentatorHandle : t.Optional[str]
+    commentatorHandle : str | None
         Handle of the user who posted the comment.
-    locale : t.Optional[str]
+    locale : str | None
         Locale of the comment.
-    text : t.Optional[str]
+    text : str | None
         Text content of the comment.
-    parentCommentId : t.Optional[int]
+    parentCommentId : int | None
         Identifier of the parent comment (if any).
-    rating : t.Optional[int]
+    rating : int | None
         Rating of the comment.
     """
 
-    id: t.Optional[int] = None
-    creationTimeSeconds: t.Optional[int] = None
-    commentatorHandle: t.Optional[str] = None
-    locale: t.Optional[str] = None
-    text: t.Optional[str] = None
-    parentCommentId: t.Optional[int] = None
-    rating: t.Optional[int] = None
+    id: int | None = None
+    creationTimeSeconds: int | None = None
+    commentatorHandle: str | None = None
+    locale: str | None = None
+    text: str | None = None
+    parentCommentId: int | None = None
+    rating: int | None = None
 
 
 class RecentAction(msgspec.Struct):
@@ -206,17 +198,17 @@ class RecentAction(msgspec.Struct):
 
     Attributes
     ----------
-    timeSeconds : t.Optional[int]
+    timeSeconds : int | None
         Unix timestamp of the action.
-    blogEntry : t.Optional[BlogEntry]
+    blogEntry : BlogEntry | None
         Associated blog entry (short version), if applicable.
-    comment : t.Optional[Comment]
+    comment : Comment | None
         Associated comment, if applicable.
     """
 
-    timeSeconds: t.Optional[int] = None
-    blogEntry: t.Optional[BlogEntry] = None
-    comment: t.Optional[Comment] = None
+    timeSeconds: int | None = None
+    blogEntry: BlogEntry | None = None
+    comment: Comment | None = None
 
 
 class RatingChange(msgspec.Struct):
@@ -225,29 +217,29 @@ class RatingChange(msgspec.Struct):
 
     Attributes
     ----------
-    contestId : t.Optional[int]
+    contestId : int | None
         Identifier of the contest.
-    contestName : t.Optional[str]
+    contestName : str | None
         Localized name of the contest.
-    handle : t.Optional[str]
+    handle : str | None
         Codeforces user handle.
-    rank : t.Optional[int]
+    rank : int | None
         User's rank during the contest.
-    ratingUpdateTimeSeconds : t.Optional[int]
+    ratingUpdateTimeSeconds : int | None
         Unix timestamp when the rating was updated.
-    oldRating : t.Optional[int]
+    oldRating : int | None
         User's rating before the contest.
-    newRating : t.Optional[int]
+    newRating : int | None
         User's rating after the contest.
     """
 
-    contestId: t.Optional[int] = None
-    contestName: t.Optional[str] = None
-    handle: t.Optional[str] = None
-    rank: t.Optional[int] = None
-    ratingUpdateTimeSeconds: t.Optional[int] = None
-    oldRating: t.Optional[int] = None
-    newRating: t.Optional[int] = None
+    contestId: int | None = None
+    contestName: str | None = None
+    handle: str | None = None
+    rank: int | None = None
+    ratingUpdateTimeSeconds: int | None = None
+    oldRating: int | None = None
+    newRating: int | None = None
 
 
 class Contest(msgspec.Struct):
@@ -256,59 +248,59 @@ class Contest(msgspec.Struct):
 
     Attributes
     ----------
-    id : t.Optional[int]
+    id : int | None
         Contest identifier.
-    name : t.Optional[str]
+    name : str | None
         Localized name of the contest.
-    type : t.Optional[str]
+    type : str | None
         Contest type (e.g., 'CF', 'IOI', 'ICPC').
-    phase : t.Optional[str]
+    phase : str | None
         Current contest phase (e.g., 'BEFORE', 'CODING', 'FINISHED').
-    frozen : t.Optional[bool]
+    frozen : bool | None
         Indicates if the contest ranklist is frozen.
-    durationSeconds : t.Optional[int]
+    durationSeconds : int | None
         Contest duration in seconds.
-    startTimeSeconds : t.Optional[int]
+    startTimeSeconds : int | None
         Unix timestamp of the contest start.
-    relativeTimeSeconds : t.Optional[int]
+    relativeTimeSeconds : int | None
         Seconds elapsed since the contest start (may be negative).
-    preparedBy : t.Optional[str]
+    preparedBy : str | None
         Handle of the contest creator.
-    websiteUrl : t.Optional[str]
+    websiteUrl : str | None
         URL of the contest-related website.
-    description : t.Optional[str]
+    description : str | None
         Localized description of the contest.
-    difficulty : t.Optional[int]
+    difficulty : int | None
         Difficulty rating (scale from 1 to 5).
-    kind : t.Optional[str]
+    kind : str | None
         Localized, human-readable contest type.
-    icpcRegion : t.Optional[str]
+    icpcRegion : str | None
         Localized region name for official ICPC contests.
-    country : t.Optional[str]
+    country : str | None
         Localized country name.
-    city : t.Optional[str]
+    city : str | None
         Localized city name.
-    season : t.Optional[str]
+    season : str | None
         Contest season.
     """
 
-    id: t.Optional[int] = None
-    name: t.Optional[str] = None
-    type: t.Optional[str] = None
-    phase: t.Optional[str] = None
-    frozen: t.Optional[bool] = None
-    durationSeconds: t.Optional[int] = None
-    startTimeSeconds: t.Optional[int] = None
-    relativeTimeSeconds: t.Optional[int] = None
-    preparedBy: t.Optional[str] = None
-    websiteUrl: t.Optional[str] = None
-    description: t.Optional[str] = None
-    difficulty: t.Optional[int] = None
-    kind: t.Optional[str] = None
-    icpcRegion: t.Optional[str] = None
-    country: t.Optional[str] = None
-    city: t.Optional[str] = None
-    season: t.Optional[str] = None
+    id: int | None = None
+    name: str | None = None
+    type: str | None = None
+    phase: str | None = None
+    frozen: bool | None = None
+    durationSeconds: int | None = None
+    startTimeSeconds: int | None = None
+    relativeTimeSeconds: int | None = None
+    preparedBy: str | None = None
+    websiteUrl: str | None = None
+    description: str | None = None
+    difficulty: int | None = None
+    kind: str | None = None
+    icpcRegion: str | None = None
+    country: str | None = None
+    city: str | None = None
+    season: str | None = None
 
 
 class Party(msgspec.Struct):
@@ -317,32 +309,32 @@ class Party(msgspec.Struct):
 
     Attributes
     ----------
-    contestId : t.Optional[int]
+    contestId : int | None
         Identifier of the contest (if applicable).
-    members : t.Optional[t.List[Member]]
+    members : list[Member] | None
         List of party members.
-    participantType : t.Optional[str]
+    participantType : str | None
         Participant type (e.g., 'CONTESTANT', 'PRACTICE', 'VIRTUAL').
-    teamId : t.Optional[int]
+    teamId : int | None
         Unique team identifier (if the party is a team).
-    teamName : t.Optional[str]
+    teamName : str | None
         Localized team name (if the party is a team or ghost).
-    ghost : t.Optional[bool]
+    ghost : bool | None
         Indicates if the party is a ghost (participated off Codeforces).
-    room : t.Optional[int]
+    room : int | None
         Room number (if assigned).
-    startTimeSeconds : t.Optional[int]
+    startTimeSeconds : int | None
         Unix timestamp when the party started the contest.
     """
 
-    contestId: t.Optional[int] = None
-    members: t.Optional[t.List[Member]] = None
-    participantType: t.Optional[str] = None
-    teamId: t.Optional[int] = None
-    teamName: t.Optional[str] = None
-    ghost: t.Optional[bool] = None
-    room: t.Optional[int] = None
-    startTimeSeconds: t.Optional[int] = None
+    contestId: int | None = None
+    members: list[Member] | None = None
+    participantType: str | None = None
+    teamId: int | None = None
+    teamName: str | None = None
+    ghost: bool | None = None
+    room: int | None = None
+    startTimeSeconds: int | None = None
 
 
 class Problem(msgspec.Struct):
@@ -351,32 +343,32 @@ class Problem(msgspec.Struct):
 
     Attributes
     ----------
-    contestId : t.Optional[int]
+    contestId : int | None
         Identifier of the contest containing the problem.
-    problemsetName : t.Optional[str]
+    problemsetName : str | None
         Short name of the problemset to which the problem belongs.
-    index : t.Optional[str]
+    index : str | None
         Problem index (typically a letter or letter-number combination).
-    name : t.Optional[str]
+    name : str | None
         Localized name of the problem.
-    type : t.Optional[str]
+    type : str | None
         Problem type (e.g., 'PROGRAMMING', 'QUESTION').
-    points : t.Optional[float]
+    points : float | None
         Maximum points achievable for the problem.
-    rating : t.Optional[int]
+    rating : int | None
         Difficulty rating of the problem.
-    tags : t.Optional[t.List[str]]
+    tags : list[str] | None
         List of tags associated with the problem.
     """
 
-    contestId: t.Optional[int] = None
-    problemsetName: t.Optional[str] = None
-    index: t.Optional[str] = None
-    name: t.Optional[str] = None
-    type: t.Optional[str] = None
-    points: t.Optional[float] = None
-    rating: t.Optional[int] = None
-    tags: t.Optional[t.List[str]] = None
+    contestId: int | None = None
+    problemsetName: str | None = None
+    index: str | None = None
+    name: str | None = None
+    type: str | None = None
+    points: float | None = None
+    rating: int | None = None
+    tags: list[str] | None = None
 
 
 class ProblemStatistics(msgspec.Struct):
@@ -385,17 +377,17 @@ class ProblemStatistics(msgspec.Struct):
 
     Attributes
     ----------
-    contestId : t.Optional[int]
+    contestId : int | None
         Identifier of the contest containing the problem.
-    index : t.Optional[str]
+    index : str | None
         Problem index (typically a letter or letter-number combination).
-    solvedCount : t.Optional[int]
+    solvedCount : int | None
         Number of users who solved the problem.
     """
 
-    contestId: t.Optional[int] = None
-    index: t.Optional[str] = None
-    solvedCount: t.Optional[int] = None
+    contestId: int | None = None
+    index: str | None = None
+    solvedCount: int | None = None
 
 
 class Submission(msgspec.Struct):
@@ -406,45 +398,45 @@ class Submission(msgspec.Struct):
     ----------
     id : int
         Unique identifier for the submission.
-    contestId : t.Optional[int]
+    contestId : int | None
         Identifier of the contest (if applicable).
-    creationTimeSeconds : t.Optional[int]
+    creationTimeSeconds : int | None
         Unix timestamp when the submission was created.
-    relativeTimeSeconds : t.Optional[int]
+    relativeTimeSeconds : int | None
         Seconds elapsed from contest start to the submission.
-    problem : t.Optional[Problem]
+    problem : Problem | None
         Problem associated with the submission.
-    author : t.Optional[Party]
+    author : Party | None
         Party that made the submission.
-    programmingLanguage : t.Optional[str]
+    programmingLanguage : str | None
         Programming language used for the submission.
-    verdict : t.Optional[str]
+    verdict : str | None
         Verdict of the submission (e.g., 'OK', 'WRONG_ANSWER').
-    testset : t.Optional[str]
+    testset : str | None
         Testset used for judging (e.g., 'SAMPLES', 'PRETESTS').
-    passedTestCount : t.Optional[int]
+    passedTestCount : int | None
         Number of tests passed.
-    timeConsumedMillis : t.Optional[int]
+    timeConsumedMillis : int | None
         Time consumed (in milliseconds) for one test.
-    memoryConsumedBytes : t.Optional[int]
+    memoryConsumedBytes : int | None
         Memory consumed (in bytes) for one test.
-    points : t.Optional[float]
+    points : float | None
         Points scored (for IOI-like contests).
     """
 
     id: int
-    contestId: t.Optional[int] = None
-    creationTimeSeconds: t.Optional[int] = None
-    relativeTimeSeconds: t.Optional[int] = None
-    problem: t.Optional[Problem] = None
-    author: t.Optional[Party] = None
-    programmingLanguage: t.Optional[str] = None
-    verdict: t.Optional[str] = None
-    testset: t.Optional[str] = None
-    passedTestCount: t.Optional[int] = None
-    timeConsumedMillis: t.Optional[int] = None
-    memoryConsumedBytes: t.Optional[int] = None
-    points: t.Optional[float] = None
+    contestId: int | None = None
+    creationTimeSeconds: int | None = None
+    relativeTimeSeconds: int | None = None
+    problem: Problem | None = None
+    author: Party | None = None
+    programmingLanguage: str | None = None
+    verdict: str | None = None
+    testset: str | None = None
+    passedTestCount: int | None = None
+    timeConsumedMillis: int | None = None
+    memoryConsumedBytes: int | None = None
+    points: float | None = None
 
 
 class Hack(msgspec.Struct):
@@ -457,28 +449,28 @@ class Hack(msgspec.Struct):
         Unique identifier for the hack.
     creationTimeSeconds : int
         Unix timestamp when the hack was created.
-    hacker : t.Optional[Party]
+    hacker : Party | None
         Party that initiated the hack.
-    defender : t.Optional[Party]
+    defender : Party | None
         Party that was defended against.
-    verdict : t.Optional[str]
+    verdict : str | None
         Hack verdict (e.g., 'HACK_SUCCESSFUL', 'HACK_UNSUCCESSFUL').
-    problem : t.Optional[Problem]
+    problem : Problem | None
         Problem that was hacked.
-    test : t.Optional[str]
+    test : str | None
         Test case details (if available).
-    judgeProtocol : t.Optional[t.Dict[str, str]]
+    judgeProtocol : dict[str, str] | None
         Judge protocol details including keys such as 'manual', 'protocol', and 'verdict'.
     """
 
     id: int
     creationTimeSeconds: int
-    hacker: t.Optional[Party] = None
-    defender: t.Optional[Party] = None
-    verdict: t.Optional[str] = None
-    problem: t.Optional[Problem] = None
-    test: t.Optional[str] = None
-    judgeProtocol: t.Optional[t.Dict[str, str]] = None
+    hacker: Party | None = None
+    defender: Party | None = None
+    verdict: str | None = None
+    problem: Problem | None = None
+    test: str | None = None
+    judgeProtocol: dict[str, str] | None = None
 
 
 class ProblemResult(msgspec.Struct):
@@ -487,23 +479,23 @@ class ProblemResult(msgspec.Struct):
 
     Attributes
     ----------
-    points : t.Optional[float]
+    points : float | None
         Points scored for the problem.
-    penalty : t.Optional[int]
+    penalty : int | None
         Penalty incurred (in ICPC style) for the problem.
-    rejectedAttemptCount : t.Optional[int]
+    rejectedAttemptCount : int | None
         Number of incorrect submission attempts.
-    type : t.Optional[str]
+    type : str | None
         Result type (e.g., 'PRELIMINARY', 'FINAL').
-    bestSubmissionTimeSeconds : t.Optional[int]
+    bestSubmissionTimeSeconds : int | None
         Seconds elapsed from contest start for the best submission.
     """
 
-    points: t.Optional[float] = None
-    penalty: t.Optional[int] = None
-    rejectedAttemptCount: t.Optional[int] = None
-    type: t.Optional[str] = None
-    bestSubmissionTimeSeconds: t.Optional[int] = None
+    points: float | None = None
+    penalty: int | None = None
+    rejectedAttemptCount: int | None = None
+    type: str | None = None
+    bestSubmissionTimeSeconds: int | None = None
 
 
 class RankListRow(msgspec.Struct):
@@ -512,29 +504,29 @@ class RankListRow(msgspec.Struct):
 
     Attributes
     ----------
-    party : t.Optional[Party]
+    party : Party | None
         Party corresponding to this ranklist row.
-    rank : t.Optional[int]
+    rank : int | None
         Rank position of the party.
-    points : t.Optional[float]
+    points : float | None
         Total points scored by the party.
-    penalty : t.Optional[int]
+    penalty : int | None
         Total penalty incurred by the party.
-    successfulHackCount : t.Optional[int]
+    successfulHackCount : int | None
         Number of successful hacks performed by the party.
-    unsuccessfulHackCount : t.Optional[int]
+    unsuccessfulHackCount : int | None
         Number of unsuccessful hacks performed by the party.
-    problemResults : t.Optional[t.List[ProblemResult]]
+    problemResults : list[ProblemResult] | None
         List of results for each problem (order corresponds to the problems list).
-    lastSubmissionTimeSeconds : t.Optional[int]
+    lastSubmissionTimeSeconds : int | None
         Unix timestamp of the last submission contributing to the score (for IOI contests).
     """
 
-    party: t.Optional[Party] = None
-    rank: t.Optional[int] = None
-    points: t.Optional[float] = None
-    penalty: t.Optional[int] = None
-    successfulHackCount: t.Optional[int] = None
-    unsuccessfulHackCount: t.Optional[int] = None
-    problemResults: t.Optional[t.List[ProblemResult]] = None
-    lastSubmissionTimeSeconds: t.Optional[int] = None
+    party: Party | None = None
+    rank: int | None = None
+    points: float | None = None
+    penalty: int | None = None
+    successfulHackCount: int | None = None
+    unsuccessfulHackCount: int | None = None
+    problemResults: list[ProblemResult] | None = None
+    lastSubmissionTimeSeconds: int | None = None

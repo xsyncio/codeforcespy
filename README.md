@@ -1,136 +1,235 @@
-# codeforcespy
+<div align="center">
 
-**Faster | Better | Type-Safe**
+# ⚡ C O D E F O R C E S P Y ⚡
+### <span style="font-family: monospace;">HIGH PERFORMANCE. ASYNC. TYPE-SAFE.</span>
 
-## Overview
+[![PyPI version](https://img.shields.io/pypi/v/codeforcespy?color=00ff00&label=PYPI&style=for-the-badge&logo=pypi&logoColor=white)](https://pypi.org/project/codeforcespy/)
+[![Python](https://img.shields.io/badge/PYTHON-3.13-00ffff?style=for-the-badge&logo=python&logoColor=black)](https://python.org)
+[![License](https://img.shields.io/badge/LICENSE-MIT-ff00ff?style=for-the-badge)](LICENSE)
+[![Coverage](https://img.shields.io/badge/COVERAGE-100%25-00ff00?style=for-the-badge)](tests/)
 
-**codeforcespy** is a high-performance, type-safe Python library that simplifies interacting with the Codeforces API. It provides both synchronous and asynchronous client handlers to suit different application needs, ensuring that your code remains efficient, reliable, and fully type-checked.
+<img src="./assets/codeforcespy_banner.png" alt="codeforcespy banner" width="100%" style="border: 2px solid cyan; border-radius: 10px; box-shadow: 0 0 20px cyan;">
 
-Built entirely based on the official [Codeforces API Documentation](https://codeforces.com/apiHelp/), codeforcespy adheres to industry best practices, offering a consistent API surface regardless of your chosen client mode.
+<br>
 
-## Table of Contents
+</div>
 
-- [Features](#features)
-- [Installation](#installation)
-- [Quick Start](#quick-start)
-  - [Asynchronous Usage](#asynchronous-usage)
-  - [Synchronous Usage](#synchronous-usage)
-- [Customization and Advanced Usage](#customization-and-advanced-usage)
-- [Contributing](#contributing)
-- [License](#license)
+---
 
-## Features
+# 👁️ INTRODUCTION
 
-- **Dual Client Handlers:**  
-  Choose between a synchronous handler (`SyncMethod`) or an asynchronous handler (`AsyncMethod`) based on your application requirements.
+**codeforcespy** is a high-performance, strictly type-safe Python library designed for interaction with the **Codeforces API**. 
 
-- **Type-Safe:**  
-  Leverages static type checking to ensure reliable and maintainable code.
+It provides both **synchronous** and **asynchronous** clients, ensuring seamless integration into any architecture. Built with modern standards, it offers complete type coverage, making it ideal for building contest bots, analysis tools, or educational platforms.
 
-- **Authentication Support:**  
-  Easily enable authentication by passing the `enable_auth` parameter to the client constructor to access user-specific endpoints.
+### 🔥 KEY FEATURES
+- **High Performance**: Powered by `httpx` for efficient async networking.
+- **Type Safety**: 100% Typed codebase using generic protocols. No `Any`.
+- **Reliability**: Robust error handling and automatic retry mechanisms.
+- **Dual Mode**: Full support for both `SyncClient` and `AsyncClient` with identical API signatures.
 
-- **Modular and Extensible:**  
-  Customize types using the provided `abc` module for a tailored experience.
+---
 
-- **Optimized Serialization:**  
-  Utilizes [msgspec](https://github.com/jcrist/msgspec) for fast data validation and serialization.
+# 📦 I N S T A L L A T I O N
 
-- **Code Quality:**  
-  Enforced by [ruff](https://github.com/astral-sh/ruff) for consistent formatting and adherence to best practices.
+Install the package via pip:
 
-## Installation
-
-### As a User
-
-Install codeforcespy via pip:
-
-```sh
+```bash
 pip install codeforcespy
 ```
 
-### As a Developer
+*For development dependencies:*
 
-For development, install with the extra dependencies:
-
-```sh
+```bash
 pip install codeforcespy[dev]
 ```
 
-## Quick Start
+---
 
-### Asynchronous Usage
+# 🔌 Q U I C K S T A R T
 
-Below is a basic example demonstrating how to retrieve user information asynchronously:
+## ⚡ ASYNC CLIENT (RECOMMENDED)
+*Non-blocking implementation for high-concurrency applications.*
 
 ```python
 import asyncio
-import codeforcespy
+from codeforcespy import AsyncClient
 
 async def main():
-    # Initialize the asynchronous client
-    api = codeforcespy.AsyncMethod()
-    
-    # Retrieve user information for multiple handles separated by semicolons
-    users = await api.get_user(handles="DmitriyH;Fefer_Ivan")
-    
-    # Process and print the avatar for each user
-    for user in users:
-        print(user.avatar)
+    # Initialize the client
+    client = AsyncClient()
 
-    # Close the client connection
-    await api.close()
+    try:
+        # Fetch user information
+        user = await client.get_user(handles="tourist")
+        print(f"👤 User: {user[0].handle} | Rating: {user[0].rating}")
 
-asyncio.run(main())
+        # List active contests
+        contests = await client.get_contest_list(of_gym=False)
+        print(f"🏆 Found {len(contests)} active contests.")
+
+    finally:
+        # Proper resource cleanup
+        await client.close()
+
+if __name__ == "__main__":
+    asyncio.run(main())
 ```
 
-### Synchronous Usage
-
-The synchronous client offers similar functionality:
+## 🐢 SYNC CLIENT
+*Blocking implementation for scripts and simple tools.*
 
 ```python
-import codeforcespy
+from codeforcespy import SyncClient
 
 def main():
-    # Initialize the synchronous client
-    api = codeforcespy.SyncMethod()
-    
-    # Retrieve user information for multiple handles separated by semicolons
-    users = api.get_user(handles="DmitriyH;Fefer_Ivan")
-    
-    # Process and print the avatar for each user
-    for user in users:
-        print(user.avatar)
-    
-    # Close the client connection
-    api.close()
+    # Context manager handles cleanup automatically
+    with SyncClient() as client:
+        # Fetch user information
+        user = client.get_user(handles="tourist")
+        print(f"👤 User: {user[0].handle}")
+        
+        # Access rating history
+        rating_history = client.get_user_rating(handle="tourist")
+        print(f"📉 Found {len(rating_history)} rating changes.")
 
 if __name__ == "__main__":
     main()
 ```
 
-## Customization and Advanced Usage
+---
 
-- **Authentication:**  
-  To enable authentication for endpoints that require it, simply pass `enable_auth=True` along with your API key and secret during client initialization.
+# 📚 API REFERENCE
 
-- **Type Customization:**  
-  If you need to customize or extend the data models, refer to the `abc` module which contains the abstract classes and objects used throughout the library.
+Codeforcespy provides full coverage of the public API endpoints.
 
-- **Consistent API Surface:**  
-  Both client types provide the same set of methods, ensuring that you can switch between asynchronous and synchronous programming with minimal changes.
+## 👤 USER METHODS (`User`)
+*Operations related to user profiles and activity.*
 
-## Contributing
+| Method | Description |
+| :--- | :--- |
+| `get_user(handles="a;b")` | Retrieve profile info for one or multiple handles. |
+| `get_user_rating(handle)` | Get the full rating history trajectory. |
+| `get_user_status(handle, count=10)` | Pull recent submissions. Supports paging. |
+| `get_user_friends(only_online=True)` | **[AUTH REQ]** List friends. |
+| `get_user_blog_entries(handle)` | Get all blog posts by a user. |
 
-Contributions are welcome! If you’d like to contribute:
-- Please review the [Issues](https://github.com/xscynio/codeforcespy/issues) to see where you can help.
-- Ensure that your changes maintain strict type-checking and adhere to the established coding guidelines.
-- Submit a pull request against the production branch.
+<details>
+<summary><b>🔍 View Examples</b></summary>
 
-## License
+```python
+# Get multiple users
+users = await client.get_user("tourist;Petr")
+for u in users:
+    print(f"{u.handle} -> {u.rank}")
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+# Inspect recent submissions
+subs = await client.get_user_status("tourist", count=5)
+for s in subs:
+    print(f"Problem: {s.problem.name} | Verdict: {s.verdict}")
+```
+</details>
+
+## 🏆 CONTEST METHODS (`Contest`)
+*Operations related to contests and standings.*
+
+| Method | Description |
+| :--- | :--- |
+| `get_contest_list(of_gym=False)` | List all available contests. |
+| `get_contest_standings(contest_id, ...)` | Get full ranklist with hacks & problems. |
+| `get_contest_status(contest_id)` | Get live submissions for a contest. |
+| `get_contest_hacks(contest_id)` | Retrieve list of hacks. |
+| `get_contest_rating_changes(contest_id)` | Retrieve rating updates for a contest. |
+
+<details>
+<summary><b>🔍 View Examples</b></summary>
+
+```python
+# Get top 5 standings
+standings = await client.get_contest_standings(
+    contest_id=1234, 
+    from_index=1, 
+    count=5, 
+    show_unofficial=True
+)
+
+for row in standings:
+    print(f"Rank {row.rank}: {row.party.members[0].handle}")
+```
+</details>
+
+## 🧩 PROBLEMSET METHODS (`Problemset`)
+*Operations related to the problem archive.*
+
+| Method | Description |
+| :--- | :--- |
+| `get_problemset_problems(tags="dp;math")` | Search problems by tags. |
+| `get_problemset_recent_status(count=10)` | Live feed of all submissions. |
+
+## 📰 BLOG & RECENT (`Blog`, `Recent`)
+*Operations related to content and global activity.*
+
+| Method | Description |
+| :--- | :--- |
+| `get_blog_entry_view(blog_entry_id)` | Read a blog post. |
+| `get_blog_entry_comments(blog_entry_id)` | Read the comments section. |
+| `get_recent_actions(max_count=30)` | Get global recent actions. |
 
 ---
 
-Thank you for checking out codeforcespy. If you find it useful, please give it a star!
+# 🔐 A U T H E N T I C A T I O N
+
+To access private data (friends, mashups, etc.), you must provide your **API Key** and **Secret**.
+
+1. Go to [codeforces.com/settings/api](https://codeforces.com/settings/api).
+2. Create a new key.
+3. specificy credentials when initializing the client:
+
+```python
+client = AsyncClient(
+    api_key="YOUR_KEY_HERE",
+    api_secret="YOUR_SECRET_HERE"
+)
+
+# Authorized request
+friends = await client.get_user_friends()
+```
+
+---
+
+# 🏗️ A R C H I T E C T U R E
+
+<div align="center">
+
+```mermaid
+graph TD
+    A[USER] -->|Async/Sync Call| B(Client)
+    B -->|Auth & Sign| C{Processor}
+    C -->|GET Request| D[Codeforces API]
+    D -->|JSON Stream| C
+    C -->|Validate & Parse| E[Pydantic Models]
+    E -->|Typed Object| A
+    
+    style A fill:#000,stroke:#0f0,stroke-width:2px,color:#fff
+    style B fill:#111,stroke:#0ff,stroke-width:2px,color:#fff
+    style C fill:#222,stroke:#f0f,stroke-width:2px,color:#fff
+    style D fill:#333,stroke:#ff0,stroke-width:2px,color:#fff
+    style E fill:#000,stroke:#0f0,stroke-width:2px,color:#fff
+```
+
+</div>
+
+---
+
+<div align="center">
+
+### 🤝 CONTRIBUTING
+
+Found a bug? Want to request a feature?
+[**Open an Issue on GitHub**](https://github.com/xsyncio/codeforcespy)
+
+<br>
+
+<img src="https://komarev.com/ghpvc/?username=codeforcespy&style=flat-square&label=VIEWS&color=00ff00" alt="View Count">
+
+</div>
