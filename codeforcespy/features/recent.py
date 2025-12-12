@@ -1,20 +1,20 @@
 """
-🕒 **Recent Features Mixins**.
+🕒 Recent Features Mixins.
 =============================
 
 Domain-specific logic for recent action-related API endpoints.
 
-✨ **Capabilities**
+✨ Capabilities
 -------------------
-- 📜 **Actions**: Retrieve recent actions across the platform.
-- 🆕 **Updates**: Stay updated with the latest community activities.
+- 📜 Actions: Retrieve recent actions across the platform.
+- 🆕 Updates: Stay updated with the latest community activities.
 
-📦 **Classes**
+📦 Classes
 --------------
 - `SyncRecent`: Synchronous mixin for recent action operations.
 - `AsyncRecent`: Asynchronous mixin for recent action operations.
 
-📝 **Compliance**
+📝 Compliance
 -----------------
 Adheres to FinTech industry best practices, NumPy-style docstrings, and
 strict PEP 8/257 standards.
@@ -25,11 +25,10 @@ import typing
 
 import codeforcespy.abc.interactions
 import codeforcespy.abc.objects
-from codeforcespy.features.mixin_base import AsyncFeatureMixin
-from codeforcespy.features.mixin_base import SyncFeatureMixin
+import codeforcespy.features.mixin_base
 
 
-class SyncRecent(SyncFeatureMixin, abc.ABC):
+class SyncRecent(codeforcespy.features.mixin_base.SyncFeatureMixin, abc.ABC):
     """Mixin for synchronous recent action-related operations."""
 
     def get_recent_actions(
@@ -50,7 +49,7 @@ class SyncRecent(SyncFeatureMixin, abc.ABC):
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         endpoint_url: str = self._url_generator.recent_actions(max_count=max_count)
@@ -62,7 +61,7 @@ class SyncRecent(SyncFeatureMixin, abc.ABC):
         return typing.cast("list[codeforcespy.abc.objects.RecentAction]", result)
 
 
-class AsyncRecent(AsyncFeatureMixin, abc.ABC):
+class AsyncRecent(codeforcespy.features.mixin_base.AsyncFeatureMixin, abc.ABC):
     """Mixin for asynchronous recent action-related operations."""
 
     async def get_recent_actions(
@@ -83,7 +82,7 @@ class AsyncRecent(AsyncFeatureMixin, abc.ABC):
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         endpoint_url: str = self._url_generator.recent_actions(max_count=max_count)

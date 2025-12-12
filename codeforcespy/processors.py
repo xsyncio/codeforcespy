@@ -1,24 +1,24 @@
 """
-🚀 **Codeforces API Processors**.
+🚀 Codeforces API Processors.
 ================================
 
 This module acts as the central hub for synchronous and asynchronous interactions
 with the Codeforces API. It aggregates domain-specific logic into unified client
 classes, ensuring a seamless developer experience.
 
-✨ **Key Features**
+✨ Key Features
 -------------------
-- 🔄 **Unified Clients**: `SyncMethod` and `AsyncMethod` consolidate all API features.
-- 🔐 **Secure Auth**: Optional API key and secret handling for private endpoints.
-- ⚡ **High Performance**: Optimized for both blocking and non-blocking I/O contexts.
-- 🛡️ **Type Safety**: Fully typed strict compliance (PEP 484).
+- 🔄 Unified Clients: `SyncMethod` and `AsyncMethod` consolidate all API features.
+- 🔐 Secure Auth: Optional API key and secret handling for private endpoints.
+- ⚡ High Performance: Optimized for both blocking and non-blocking I/O contexts.
+- 🛡️ Type Safety: Fully typed strict compliance (PEP 484).
 
-📦 **Classes**
+📦 Classes
 --------------
 - `SyncMethod`: Synchronous client inheriting all feature mixins.
 - `AsyncMethod`: Asynchronous client inheriting all feature mixins.
 
-📝 **Compliance**
+📝 Compliance
 -----------------
 Adheres to FinTech industry best practices, NumPy-style docstrings, and
 strict PEP 8/257 standards.
@@ -31,25 +31,21 @@ import msgspec
 import codeforcespy.abc.protocols
 import codeforcespy.base
 import codeforcespy.clients
-from codeforcespy.features.blog import AsyncBlog
-from codeforcespy.features.blog import SyncBlog
-from codeforcespy.features.contest import AsyncContest
-from codeforcespy.features.contest import SyncContest
-from codeforcespy.features.problemset import AsyncProblemset
-from codeforcespy.features.problemset import SyncProblemset
-from codeforcespy.features.recent import AsyncRecent
-from codeforcespy.features.recent import SyncRecent
-from codeforcespy.features.user import AsyncUser
-from codeforcespy.features.user import SyncUser
+import codeforcespy.errors
+import codeforcespy.features.blog
+import codeforcespy.features.contest
+import codeforcespy.features.problemset
+import codeforcespy.features.recent
+import codeforcespy.features.user
 
 
 class SyncMethod(
     codeforcespy.base.BaseClient,
-    SyncUser,
-    SyncBlog,
-    SyncContest,
-    SyncProblemset,
-    SyncRecent,
+    codeforcespy.features.user.SyncUser,
+    codeforcespy.features.blog.SyncBlog,
+    codeforcespy.features.contest.SyncContest,
+    codeforcespy.features.problemset.SyncProblemset,
+    codeforcespy.features.recent.SyncRecent,
 ):
     """
     Synchronous Codeforces API client for executing requests with optional authentication.
@@ -130,7 +126,7 @@ class SyncMethod(
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         final_url: str = self._generate_authorisation(
@@ -142,7 +138,7 @@ class SyncMethod(
         if base.status != "FAILED":
             return self._ensure_list(base.result)
         else:
-            raise Exception(base.comment)
+            raise codeforcespy.errors.APIError(base.comment)
 
     def close(self) -> None:
         """Close the underlying synchronous HTTP client."""
@@ -151,11 +147,11 @@ class SyncMethod(
 
 class AsyncMethod(
     codeforcespy.base.BaseClient,
-    AsyncUser,
-    AsyncBlog,
-    AsyncContest,
-    AsyncProblemset,
-    AsyncRecent,
+    codeforcespy.features.user.AsyncUser,
+    codeforcespy.features.blog.AsyncBlog,
+    codeforcespy.features.contest.AsyncContest,
+    codeforcespy.features.problemset.AsyncProblemset,
+    codeforcespy.features.recent.AsyncRecent,
 ):
     """
     Asynchronous Codeforces API client for executing requests with optional authentication.
@@ -236,7 +232,7 @@ class AsyncMethod(
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         final_url: str = self._generate_authorisation(
@@ -248,7 +244,7 @@ class AsyncMethod(
         if base.status != "FAILED":
             return self._ensure_list(base.result)
         else:
-            raise Exception(base.comment)
+            raise codeforcespy.errors.APIError(base.comment)
 
     async def close(self) -> None:
         """Asynchronously close the underlying HTTP client."""

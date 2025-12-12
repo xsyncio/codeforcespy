@@ -1,21 +1,21 @@
 """
-🧩 **Problemset Features Mixins**.
+🧩 Problemset Features Mixins.
 =================================
 
 Domain-specific logic for problemset-related API endpoints.
 
-✨ **Capabilities**
+✨ Capabilities
 -------------------
-- 📚 **Problems**: Retrieve list of problems from the problemset.
-- 📨 **Recent**: Access recent submissions.
-- 📂 **Filtering**: Filter problems by tags and difficulty.
+- 📚 Problems: Retrieve list of problems from the problemset.
+- 📨 Recent: Access recent submissions.
+- 📂 Filtering: Filter problems by tags and difficulty.
 
-📦 **Classes**
+📦 Classes
 --------------
 - `SyncProblemset`: Synchronous mixin for problemset operations.
 - `AsyncProblemset`: Asynchronous mixin for problemset operations.
 
-📝 **Compliance**
+📝 Compliance
 -----------------
 Adheres to FinTech industry best practices, NumPy-style docstrings, and
 strict PEP 8/257 standards.
@@ -27,11 +27,10 @@ import typing
 import codeforcespy.abc.cobjects
 import codeforcespy.abc.interactions
 import codeforcespy.abc.objects
-from codeforcespy.features.mixin_base import AsyncFeatureMixin
-from codeforcespy.features.mixin_base import SyncFeatureMixin
+import codeforcespy.features.mixin_base
 
 
-class SyncProblemset(SyncFeatureMixin, abc.ABC):
+class SyncProblemset(codeforcespy.features.mixin_base.SyncFeatureMixin, abc.ABC):
     """Mixin for synchronous problemset-related operations."""
 
     def get_problemset_problems(
@@ -54,7 +53,7 @@ class SyncProblemset(SyncFeatureMixin, abc.ABC):
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         endpoint_url: str = self._url_generator.problemset_problems(
@@ -87,7 +86,7 @@ class SyncProblemset(SyncFeatureMixin, abc.ABC):
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         endpoint_url: str = self._url_generator.problemset_recent_status(
@@ -101,7 +100,7 @@ class SyncProblemset(SyncFeatureMixin, abc.ABC):
         return typing.cast("list[codeforcespy.abc.objects.Submission]", result)
 
 
-class AsyncProblemset(AsyncFeatureMixin, abc.ABC):
+class AsyncProblemset(codeforcespy.features.mixin_base.AsyncFeatureMixin, abc.ABC):
     """Mixin for asynchronous problemset-related operations."""
 
     async def get_problemset_problems(
@@ -124,7 +123,7 @@ class AsyncProblemset(AsyncFeatureMixin, abc.ABC):
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         endpoint_url: str = self._url_generator.problemset_problems(
@@ -157,7 +156,7 @@ class AsyncProblemset(AsyncFeatureMixin, abc.ABC):
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         endpoint_url: str = self._url_generator.problemset_recent_status(

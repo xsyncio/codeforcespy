@@ -1,22 +1,22 @@
 """
-🏆 **Contest Features Mixins**.
+🏆 Contest Features Mixins.
 ==============================
 
 Domain-specific logic for contest-related API endpoints.
 
-✨ **Capabilities**
+✨ Capabilities
 -------------------
-- 📅 **List**: Retrieve list of available contests.
-- 📊 **Standings**: Access contest standings and rating changes.
-- 🕵️ **Hacks**: Inspect successful and unsuccessful hacks.
-- 🏁 **Status**: Check submissions within a specific contest.
+- 📅 List: Retrieve list of available contests.
+- 📊 Standings: Access contest standings and rating changes.
+- 🕵️ Hacks: Inspect successful and unsuccessful hacks.
+- 🏁 Status: Check submissions within a specific contest.
 
-📦 **Classes**
+📦 Classes
 --------------
 - `SyncContest`: Synchronous mixin for contest operations.
 - `AsyncContest`: Asynchronous mixin for contest operations.
 
-📝 **Compliance**
+📝 Compliance
 -----------------
 Adheres to FinTech industry best practices, NumPy-style docstrings, and
 strict PEP 8/257 standards.
@@ -28,11 +28,10 @@ import typing
 import codeforcespy.abc.cobjects
 import codeforcespy.abc.interactions
 import codeforcespy.abc.objects
-from codeforcespy.features.mixin_base import AsyncFeatureMixin
-from codeforcespy.features.mixin_base import SyncFeatureMixin
+import codeforcespy.features.mixin_base
 
 
-class SyncContest(SyncFeatureMixin, abc.ABC):
+class SyncContest(codeforcespy.features.mixin_base.SyncFeatureMixin, abc.ABC):
     """Mixin for synchronous contest-related operations."""
 
     def get_contest_hacks(
@@ -55,7 +54,7 @@ class SyncContest(SyncFeatureMixin, abc.ABC):
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         endpoint_url: str = self._url_generator.contest_hacks(
@@ -86,7 +85,7 @@ class SyncContest(SyncFeatureMixin, abc.ABC):
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         endpoint_url: str = self._url_generator.contest_list(gym=of_gym)
@@ -115,7 +114,7 @@ class SyncContest(SyncFeatureMixin, abc.ABC):
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         endpoint_url: str = self._url_generator.contest_rating_changes(
@@ -159,7 +158,7 @@ class SyncContest(SyncFeatureMixin, abc.ABC):
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         endpoint_url: str = self._url_generator.contest_standings(
@@ -207,7 +206,7 @@ class SyncContest(SyncFeatureMixin, abc.ABC):
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         endpoint_url: str = self._url_generator.contest_status(
@@ -225,7 +224,7 @@ class SyncContest(SyncFeatureMixin, abc.ABC):
         return typing.cast("list[codeforcespy.abc.objects.Submission]", result)
 
 
-class AsyncContest(AsyncFeatureMixin, abc.ABC):
+class AsyncContest(codeforcespy.features.mixin_base.AsyncFeatureMixin, abc.ABC):
     """Mixin for asynchronous contest-related operations."""
 
     async def get_contest_hacks(
@@ -248,7 +247,7 @@ class AsyncContest(AsyncFeatureMixin, abc.ABC):
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         endpoint_url: str = self._url_generator.contest_hacks(
@@ -279,7 +278,7 @@ class AsyncContest(AsyncFeatureMixin, abc.ABC):
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         endpoint_url: str = self._url_generator.contest_list(gym=of_gym)
@@ -308,7 +307,7 @@ class AsyncContest(AsyncFeatureMixin, abc.ABC):
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         endpoint_url: str = self._url_generator.contest_rating_changes(
@@ -352,7 +351,7 @@ class AsyncContest(AsyncFeatureMixin, abc.ABC):
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         endpoint_url: str = self._url_generator.contest_standings(
@@ -400,7 +399,7 @@ class AsyncContest(AsyncFeatureMixin, abc.ABC):
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         endpoint_url: str = self._url_generator.contest_status(

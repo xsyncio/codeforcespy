@@ -7,7 +7,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 _ = setup(
     name="codeforcespy",
-    version="1.1.0",
+    version="1.2.0",
     author="Xsyncio",
     description=(
         "A high-performance and type-safe Python library for seamless interaction "
@@ -38,7 +38,7 @@ _ = setup(
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
         "Topic :: Software Development :: Libraries",
-        "License :: OSI Approved :: MIT License",
+        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",

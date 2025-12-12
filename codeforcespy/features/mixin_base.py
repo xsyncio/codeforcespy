@@ -1,17 +1,17 @@
 """
-🏗️ **Feature Mixin Bases**.
+🏗️ Feature Mixin Bases.
 ===========================
 
 Base classes for synchronizing and asynchronous feature implementation.
 
-✨🧩 **Mixin Architecture**.
+✨🧩 Mixin Architecture.
 -------------------
-- 🏗️ **FeatureMixin**: Common base for all feature modules.
-- 🔄 **SyncFeatureMixin**: Base for synchronous implementations.
-- ⚡ **AsyncFeatureMixin**: Base for asynchronous implementations.
-- 🔌 **Abstract Methods**: Defines `_execute_request` contract.
+- 🏗️ FeatureMixin: Common base for all feature modules.
+- 🔄 SyncFeatureMixin: Base for synchronous implementations.
+- ⚡ AsyncFeatureMixin: Base for asynchronous implementations.
+- 🔌 Abstract Methods: Defines `_execute_request` contract.
 
-📝 **Compliance**
+📝 Compliance
 -----------------
 Adheres to FinTech industry best practices, NumPy-style docstrings, and
 strict PEP 8/257 standards.

@@ -1,15 +1,15 @@
 """
-📦 **Data Models (msgspec Structs)**.
+📦 Data Models (msgspec Structs).
 ====================================
 
 msgspec definitions representing Codeforces API response objects.
 
-✨ **Features**
+✨ Features
 --------------
-- 🛡️ **Validation**: Strict runtime type checking and validation.
-- 🏗️ **Structure**: Clear object definitions for Users, Contests, Problems, etc.
+- 🛡️ Validation: Strict runtime type checking and validation.
+- 🏗️ Structure: Clear object definitions for Users, Contests, Problems, etc.
 
-📦 **Classes**
+📦 Classes
 --------------
 - `User`: Represents a Codeforces user.
 - `Member`: Represents a member of a party.
@@ -26,7 +26,7 @@ msgspec definitions representing Codeforces API response objects.
 - `ProblemResult`: Represents a party's result for a specific problem.
 - `RankListRow`: Represents a row in the contest ranklist.
 
-📝 **Compliance**
+📝 Compliance
 -----------------
 Adheres to FinTech industry best practices, NumPy-style docstrings, and
 strict PEP 8/257 standards.

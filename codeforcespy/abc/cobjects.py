@@ -14,20 +14,20 @@ Standings
     and rank list rows.
 ProblemSetProblems
     Encapsulates problem set problems along with their associated statistics.
-🏗️ **Custom Objects & Helpers**
+🏗️ Custom Objects & Helpers
 ===============================
 
 Auxiliary objects and helper classes for specific API behaviors.
 
-✨ **Capabilities**
+✨ Capabilities
 -------------------
-- 🛠️ **Utilities**: Specialized data structures needed for API responses.
+- 🛠️ Utilities: Specialized data structures needed for API responses.
 
-📦 **Classes**
+📦 Classes
 --------------
 - `RecentAction`: Wrapper for recent action events.
 
-📝 **Compliance**
+📝 Compliance
 -----------------
 Adheres to FinTech industry best practices, NumPy-style docstrings, and
 strict PEP 8/257 standards.

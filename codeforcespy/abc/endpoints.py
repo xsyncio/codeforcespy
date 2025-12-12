@@ -1,19 +1,19 @@
 """
-🔗 **API Endpoints Definitions**.
+🔗 API Endpoints Definitions.
 ================================
 
 Defines the structure and generation logic for Codeforces API endpoints.
 
-✨ **Capabilities**
+✨ Capabilities
 -------------------
-- 🛤️ **Route Generation**: Dynamically constructs API URLs.
-- 🔧 **Parameter Handling**: Manages query parameters for endpoints.
+- 🛤️ Route Generation: Dynamically constructs API URLs.
+- 🔧 Parameter Handling: Manages query parameters for endpoints.
 
-📦 **Classes**
+📦 Classes
 --------------
 - `CodeForcesAPI`: Main endpoint generator.
 
-📝 **Compliance**
+📝 Compliance
 -----------------
 Adheres to FinTech industry best practices, NumPy-style docstrings, and
 strict PEP 8/257 standards.

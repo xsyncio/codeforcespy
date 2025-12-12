@@ -1,21 +1,21 @@
 """
-👤 **User Features Mixins**.
+👤 User Features Mixins.
 ===========================
 
 Domain-specific logic for user-related API endpoints.
 
-✨ **Capabilities**
+✨ Capabilities
 -------------------
-- 📋 **User Info**: Retrieve detailed user profiles and rankings.
-- 📉 **Ratings**: Access user rating changes and history.
-- 🚦 **Status**: Get user submissions and status updates.
+- 📋 User Info: Retrieve detailed user profiles and rankings.
+- 📉 Ratings: Access user rating changes and history.
+- 🚦 Status: Get user submissions and status updates.
 
-📦 **Classes**
+📦 Classes
 --------------
 - `SyncUser`: Synchronous mixin for user operations.
 - `AsyncUser`: Asynchronous mixin for user operations.
 
-📝 **Compliance**
+📝 Compliance
 -----------------
 Adheres to FinTech industry best practices, NumPy-style docstrings, and
 strict PEP 8/257 standards.
@@ -26,11 +26,10 @@ import typing
 
 import codeforcespy.abc.interactions
 import codeforcespy.abc.objects
-from codeforcespy.features.mixin_base import AsyncFeatureMixin
-from codeforcespy.features.mixin_base import SyncFeatureMixin
+import codeforcespy.features.mixin_base
 
 
-class SyncUser(SyncFeatureMixin, abc.ABC):
+class SyncUser(codeforcespy.features.mixin_base.SyncFeatureMixin, abc.ABC):
     """Mixin for synchronous user-related operations."""
 
     def get_user(
@@ -53,7 +52,7 @@ class SyncUser(SyncFeatureMixin, abc.ABC):
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         endpoint_url: str = self._url_generator.user_info(
@@ -84,7 +83,7 @@ class SyncUser(SyncFeatureMixin, abc.ABC):
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         endpoint_url: str = self._url_generator.user_blog_entries(handle=handle)
@@ -111,7 +110,7 @@ class SyncUser(SyncFeatureMixin, abc.ABC):
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         endpoint_url: str = self._url_generator.user_friends(only_online=only_online)
@@ -147,7 +146,7 @@ class SyncUser(SyncFeatureMixin, abc.ABC):
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         endpoint_url: str = self._url_generator.user_rated_list(
@@ -180,7 +179,7 @@ class SyncUser(SyncFeatureMixin, abc.ABC):
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         endpoint_url: str = self._url_generator.user_rating(handle=handle)
@@ -213,7 +212,7 @@ class SyncUser(SyncFeatureMixin, abc.ABC):
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         endpoint_url: str = self._url_generator.user_status(
@@ -227,7 +226,7 @@ class SyncUser(SyncFeatureMixin, abc.ABC):
         return typing.cast("list[codeforcespy.abc.objects.Submission]", result)
 
 
-class AsyncUser(AsyncFeatureMixin, abc.ABC):
+class AsyncUser(codeforcespy.features.mixin_base.AsyncFeatureMixin, abc.ABC):
     """Mixin for asynchronous user-related operations."""
 
     async def get_user(
@@ -250,7 +249,7 @@ class AsyncUser(AsyncFeatureMixin, abc.ABC):
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         endpoint_url: str = self._url_generator.user_info(
@@ -281,7 +280,7 @@ class AsyncUser(AsyncFeatureMixin, abc.ABC):
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         endpoint_url: str = self._url_generator.user_blog_entries(handle=handle)
@@ -308,7 +307,7 @@ class AsyncUser(AsyncFeatureMixin, abc.ABC):
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         endpoint_url: str = self._url_generator.user_friends(only_online=only_online)
@@ -344,7 +343,7 @@ class AsyncUser(AsyncFeatureMixin, abc.ABC):
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         endpoint_url: str = self._url_generator.user_rated_list(
@@ -377,7 +376,7 @@ class AsyncUser(AsyncFeatureMixin, abc.ABC):
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         endpoint_url: str = self._url_generator.user_rating(handle=handle)
@@ -410,7 +409,7 @@ class AsyncUser(AsyncFeatureMixin, abc.ABC):
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         endpoint_url: str = self._url_generator.user_status(

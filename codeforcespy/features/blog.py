@@ -1,21 +1,21 @@
 """
-📰 **Blog Features Mixins**.
+📰 Blog Features Mixins.
 ===========================
 
 Domain-specific logic for blog-related API endpoints.
 
-✨ **Capabilities**
+✨ Capabilities
 -------------------
-- 📝 **Entries**: Retrieve blog entries and content.
-- 💬 **Comments**: Access comments associated with blog entries.
-- 🔍 **View**: Get specific blog entry details.
+- 📝 Entries: Retrieve blog entries and content.
+- 💬 Comments: Access comments associated with blog entries.
+- 🔍 View: Get specific blog entry details.
 
-📦 **Classes**
+📦 Classes
 --------------
 - `SyncBlog`: Synchronous mixin for blog operations.
 - `AsyncBlog`: Asynchronous mixin for blog operations.
 
-📝 **Compliance**
+📝 Compliance
 -----------------
 Adheres to FinTech industry best practices, NumPy-style docstrings, and
 strict PEP 8/257 standards.
@@ -26,11 +26,10 @@ import typing
 
 import codeforcespy.abc.interactions
 import codeforcespy.abc.objects
-from codeforcespy.features.mixin_base import AsyncFeatureMixin
-from codeforcespy.features.mixin_base import SyncFeatureMixin
+import codeforcespy.features.mixin_base
 
 
-class SyncBlog(SyncFeatureMixin, abc.ABC):
+class SyncBlog(codeforcespy.features.mixin_base.SyncFeatureMixin, abc.ABC):
     """Mixin for synchronous blog-related operations."""
 
     def get_blog_entry_comments(
@@ -51,7 +50,7 @@ class SyncBlog(SyncFeatureMixin, abc.ABC):
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         endpoint_url: str = self._url_generator.blog_entry_comments(
@@ -82,7 +81,7 @@ class SyncBlog(SyncFeatureMixin, abc.ABC):
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         endpoint_url: str = self._url_generator.blog_entry_view(
@@ -96,7 +95,7 @@ class SyncBlog(SyncFeatureMixin, abc.ABC):
         return typing.cast("list[codeforcespy.abc.objects.BlogEntry]", result)
 
 
-class AsyncBlog(AsyncFeatureMixin, abc.ABC):
+class AsyncBlog(codeforcespy.features.mixin_base.AsyncFeatureMixin, abc.ABC):
     """Mixin for asynchronous blog-related operations."""
 
     async def get_blog_entry_comments(
@@ -117,7 +116,7 @@ class AsyncBlog(AsyncFeatureMixin, abc.ABC):
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         endpoint_url: str = self._url_generator.blog_entry_comments(
@@ -148,7 +147,7 @@ class AsyncBlog(AsyncFeatureMixin, abc.ABC):
 
         Raises
         ------
-        Exception
+        codeforcespy.errors.APIError
             If the API response indicates a failure.
         """
         endpoint_url: str = self._url_generator.blog_entry_view(

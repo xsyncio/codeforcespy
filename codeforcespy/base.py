@@ -1,22 +1,22 @@
 """
-🏗️ **Base Client Architecture**.
+🏗️ Base Client Architecture.
 ================================
 
 This module provides the foundational `BaseClient` class, which establishes the
 core infrastructure for authentication, request handling, and response validation.
 
-🔧 **Core Capabilities**
+🔧 Core Capabilities
 ------------------------
-- 🔑 **Authentication**: Secure generation of API signatures (SHA-512).
-- 📡 **Request Handling**: Robust mechanism for executing HTTP operations.
-- 🧹 **Data Sanitization**: Utilities for normalizing API inputs (e.g., list conversions).
-- 🧩 **Extensibility**: Designed as an abstract base for specific client implementations.
+- 🔑 Authentication: Secure generation of API signatures (SHA-512).
+- 📡 Request Handling: Robust mechanism for executing HTTP operations.
+- 🧹 Data Sanitization: Utilities for normalizing API inputs (e.g., list conversions).
+- 🧩 Extensibility: Designed as an abstract base for specific client implementations.
 
-📦 **Classes**
+📦 Classes
 --------------
 - `BaseClient`: Abstract base class implementing shared client logic.
 
-📝 **Compliance**
+📝 Compliance
 -----------------
 Adheres to FinTech industry best practices, NumPy-style docstrings, and
 strict PEP 8/257 standards.
