@@ -207,7 +207,7 @@ graph TD
     B -->|Auth & Sign| C{Processor}
     C -->|GET Request| D[Codeforces API]
     D -->|JSON Stream| C
-    C -->|Validate & Parse| E[Pydantic Models]
+    C -->|Validate & Parse| E[msgspec Structs]
     E -->|Typed Object| A
     
     style A fill:#000,stroke:#0f0,stroke-width:2px,color:#fff

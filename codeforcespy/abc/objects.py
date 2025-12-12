@@ -1,8 +1,8 @@
 """
-📦 **Data Models (Pydantic)**.
-=============================
+📦 **Data Models (msgspec Structs)**.
+====================================
 
-Pydantic models representing Codeforces API response objects.
+msgspec definitions representing Codeforces API response objects.
 
 ✨ **Features**
 --------------

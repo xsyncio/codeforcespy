@@ -53,11 +53,11 @@ class BaseClient:
     """
 
     __slots__: tuple[str, ...] = (
-        "_url_generator",
+        "_auth_enabled",
         "_auth_key",
         "_secret",
         "_time",
-        "_auth_enabled",
+        "_url_generator",
     )
 
     def __init__(

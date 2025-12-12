@@ -16,7 +16,7 @@ _ = setup(
     ),
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/xscynio/codeforcespy",
+    url="https://github.com/xsyncio/codeforcespy",
     packages=find_packages(include=["codeforcespy", "codeforcespy.*"]),
     include_package_data=True,
     install_requires=[
@@ -59,8 +59,8 @@ _ = setup(
         "competitive-programming",
     ],
     project_urls={
-        "Bug Tracker": "https://github.com/xscynio/codeforcespy/issues",
-        "Documentation": "https://github.com/xscynio/codeforcespy",
-        "Source": "https://github.com/xscynio/codeforcespy",
+        "Bug Tracker": "https://github.com/xsyncio/codeforcespy/issues",
+        "Documentation": "https://github.com/xsyncio/codeforcespy",
+        "Source": "https://github.com/xsyncio/codeforcespy",
     },
 )

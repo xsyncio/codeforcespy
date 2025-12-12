@@ -1,95 +1,85 @@
 """
-## codeforcespy.
+📦 **codeforcespy**.
+==================
 
-codeforcespy is a high-performance and type-safe Python library designed for seamless interaction with Codeforces. It offers both asynchronous and synchronous client handlers, allowing developers to choose the appropriate method based on their requirements.
-
-Key Features:
-1. ### Client Handlers:
-   - Synchronous Handler: `SyncMethod`
-   - Asynchronous Handler: `AsyncMethod`
-
-2. ### Functionality:
-🌟 **CodeforcesPy: The Ultimate Codeforces API Wrapper**
-========================================================
-
-A modern, strictly typed, and high-performance Python wrapper for the Codeforces API.
-Designed for competitive programmers and tool developers who demand reliability and speed.
+A high-performance, type-safe, and asynchronous wrapper for the Codeforces API.
+Designed for competitive programmers and developers who demand reliability.
 
 ✨ **Highlights**
 -----------------
 - 🚀 **Sync & Async**: First-class support for both synchronous and asynchronous usage.
-- 🔒 **Type Safe**: 100% type annotations with strict `pyright` compliance.
-- 🧩 **Modular**: Cleanly separated domain logic for maintainability.
+- 🔒 **Type Safe**: 100% type annotations with strict `basedpyright` compliance.
 - 🛡️ **Robust**: Comprehensive error handling and response validation.
 
-📦 **Exports**
+📝 **License**
 --------------
-- `SyncMethod`: The main synchronous client.
-- `AsyncMethod`: The main asynchronous client.
-- `CodeforcesAPIClient`: Alias for `SyncMethod`.
-
-📝 **Compliance**
------------------
-Adheres to FinTech industry best practices, NumPy-style docstrings, and
-strict PEP 8/257 standards.
-
-Example Usage:
-
-### Asynchronous usage:
-
-```python
-import asyncio
-from codeforcespy.processors import AsyncMethod
-
-
-async def main():
-    api = AsyncMethod()
-    users = await api.get_user_info(handles="DmitriyH;Fefer_Ivan")
-    # use `;` to add multiple parameters.
-    async for user in users:
-        print(user.avatar)
-
-
-asyncio.run(main())
-```
-
-### Synchronous usage:
-
-```python
-from codeforcespy.processors import SyncMethod
-
-
-async def main():
-    get = SyncMethod()
-    users = get.get_user_info(handles="DmitriyH;Fefer_Ivan")
-    # use `;` to add multiple parameters.
-    for user in users:
-        print(user.avatar)
-```
-
-LICENSE:
-```text
-    Interacts with CodeForces API.
-    Copyright (C) 2024 xscynio
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see https://www.gnu.org/licenses.
-```
+MIT License. Copyright (c) 2024 Xsyncio.
 """
 
-__version__ = "1.0dev"
+from codeforcespy.abc.cobjects import ProblemSetProblems
+from codeforcespy.abc.cobjects import Standings
+from codeforcespy.abc.endpoints import CodeForcesAPI
+from codeforcespy.abc.interactions import BlogEntryCommentResponse
+from codeforcespy.abc.interactions import BlogEntryViewResponse
+from codeforcespy.abc.interactions import ContestHacksResponse
+from codeforcespy.abc.interactions import ContestListResponse
+from codeforcespy.abc.interactions import ContestRatingChangeResponse
+from codeforcespy.abc.interactions import ContestStandingResponse
+from codeforcespy.abc.interactions import ContestStatusResponse
+from codeforcespy.abc.interactions import ProblemSetProblemsResponse
+from codeforcespy.abc.interactions import ProblemSetRecentStatusResponse
+from codeforcespy.abc.interactions import RecentActionsResponse
+from codeforcespy.abc.interactions import UserBlogEntryResponse
+from codeforcespy.abc.interactions import UserFriendResponse
+from codeforcespy.abc.interactions import UserInteractionResponse
+from codeforcespy.abc.interactions import UserRatedListResponse
+from codeforcespy.abc.interactions import UserRatingResponse
+from codeforcespy.abc.interactions import UserStatusResponse
+from codeforcespy.abc.objects import BlogEntry
+from codeforcespy.abc.objects import Comment
+from codeforcespy.abc.objects import Contest
+from codeforcespy.abc.objects import Hack
+from codeforcespy.abc.objects import Problem
+from codeforcespy.abc.objects import ProblemResult
+from codeforcespy.abc.objects import RatingChange
+from codeforcespy.abc.objects import RecentAction
+from codeforcespy.abc.objects import Submission
+from codeforcespy.abc.objects import User
+from codeforcespy.clients import AsyncClient
+from codeforcespy.clients import SyncClient
 
-# Note: Submodules are not exported here to avoid import cycles with absolute imports.
-# Please import classes directly from their respective modules:
-# from codeforcespy.processors import AsyncMethod, SyncMethod
-# from codeforcespy.clients import AsyncClient, SyncClient
+__version__ = "1.1.0"
+
+__all__ = [
+    "AsyncClient",
+    "BlogEntry",
+    "BlogEntryCommentResponse",
+    "BlogEntryViewResponse",
+    "CodeForcesAPI",
+    "Comment",
+    "Contest",
+    "ContestHacksResponse",
+    "ContestListResponse",
+    "ContestRatingChangeResponse",
+    "ContestStandingResponse",
+    "ContestStatusResponse",
+    "Hack",
+    "Problem",
+    "ProblemResult",
+    "ProblemSetProblems",
+    "ProblemSetProblemsResponse",
+    "ProblemSetRecentStatusResponse",
+    "RatingChange",
+    "RecentAction",
+    "RecentActionsResponse",
+    "Standings",
+    "Submission",
+    "SyncClient",
+    "User",
+    "UserBlogEntryResponse",
+    "UserFriendResponse",
+    "UserInteractionResponse",
+    "UserRatedListResponse",
+    "UserRatingResponse",
+    "UserStatusResponse",
+]
