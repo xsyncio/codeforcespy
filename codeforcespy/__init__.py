@@ -23,7 +23,7 @@ import codeforcespy.abc.objects
 import codeforcespy.clients
 import codeforcespy.errors
 
-__version__ = "1.2.0"
+__version__ = "1.2.1"
 
 # Re-export public API using proper namespace access
 ProblemSetProblems = codeforcespy.abc.cobjects.ProblemSetProblems

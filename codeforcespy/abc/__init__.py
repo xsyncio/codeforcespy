@@ -21,41 +21,39 @@ Adheres to FinTech industry best practices, NumPy-style docstrings, and
 strict PEP 8/257 standards.
 """
 
-import codeforcespy.abc.cobjects
-import codeforcespy.abc.endpoints
-import codeforcespy.abc.interactions
-import codeforcespy.abc.objects
+from . import cobjects
+from . import endpoints
+from . import interactions
+from . import objects
 
 # Re-export public API using proper namespace access
-ProblemSetProblems = codeforcespy.abc.cobjects.ProblemSetProblems
-Standings = codeforcespy.abc.cobjects.Standings
-CodeForcesAPI = codeforcespy.abc.endpoints.CodeForcesAPI
-BlogEntryCommentResponse = codeforcespy.abc.interactions.BlogEntryCommentResponse
-BlogEntryViewResponse = codeforcespy.abc.interactions.BlogEntryViewResponse
-ContestHacksResponse = codeforcespy.abc.interactions.ContestHacksResponse
-ContestListResponse = codeforcespy.abc.interactions.ContestListResponse
-ContestRatingChangeResponse = codeforcespy.abc.interactions.ContestRatingChangeResponse
-ContestStandingResponse = codeforcespy.abc.interactions.ContestStandingResponse
-ContestStatusResponse = codeforcespy.abc.interactions.ContestStatusResponse
-ProblemSetProblemsResponse = codeforcespy.abc.interactions.ProblemSetProblemsResponse
-ProblemSetRecentStatusResponse = (
-    codeforcespy.abc.interactions.ProblemSetRecentStatusResponse
-)
-RecentActionsResponse = codeforcespy.abc.interactions.RecentActionsResponse
-UserBlogEntryResponse = codeforcespy.abc.interactions.UserBlogEntryResponse
-UserFriendResponse = codeforcespy.abc.interactions.UserFriendResponse
-UserInteractionResponse = codeforcespy.abc.interactions.UserInteractionResponse
-UserRatedListResponse = codeforcespy.abc.interactions.UserRatedListResponse
-UserRatingResponse = codeforcespy.abc.interactions.UserRatingResponse
-UserStatusResponse = codeforcespy.abc.interactions.UserStatusResponse
-BlogEntry = codeforcespy.abc.objects.BlogEntry
-Comment = codeforcespy.abc.objects.Comment
-Contest = codeforcespy.abc.objects.Contest
-Hack = codeforcespy.abc.objects.Hack
-RatingChange = codeforcespy.abc.objects.RatingChange
-RecentAction = codeforcespy.abc.objects.RecentAction
-Submission = codeforcespy.abc.objects.Submission
-User = codeforcespy.abc.objects.User
+ProblemSetProblems = cobjects.ProblemSetProblems
+Standings = cobjects.Standings
+CodeForcesAPI = endpoints.CodeForcesAPI
+BlogEntryCommentResponse = interactions.BlogEntryCommentResponse
+BlogEntryViewResponse = interactions.BlogEntryViewResponse
+ContestHacksResponse = interactions.ContestHacksResponse
+ContestListResponse = interactions.ContestListResponse
+ContestRatingChangeResponse = interactions.ContestRatingChangeResponse
+ContestStandingResponse = interactions.ContestStandingResponse
+ContestStatusResponse = interactions.ContestStatusResponse
+ProblemSetProblemsResponse = interactions.ProblemSetProblemsResponse
+ProblemSetRecentStatusResponse = interactions.ProblemSetRecentStatusResponse
+RecentActionsResponse = interactions.RecentActionsResponse
+UserBlogEntryResponse = interactions.UserBlogEntryResponse
+UserFriendResponse = interactions.UserFriendResponse
+UserInteractionResponse = interactions.UserInteractionResponse
+UserRatedListResponse = interactions.UserRatedListResponse
+UserRatingResponse = interactions.UserRatingResponse
+UserStatusResponse = interactions.UserStatusResponse
+BlogEntry = objects.BlogEntry
+Comment = objects.Comment
+Contest = objects.Contest
+Hack = objects.Hack
+RatingChange = objects.RatingChange
+RecentAction = objects.RecentAction
+Submission = objects.Submission
+User = objects.User
 
 __all__ = [
     "BlogEntry",
